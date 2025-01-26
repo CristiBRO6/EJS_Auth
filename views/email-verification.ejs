@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Forgot Password?</title>
+
+        <!-- STYLE -->
+		<link rel="stylesheet" href="/style/style.css">
+
+		<!-- ICONS -->
+		<script src="https://kit.fontawesome.com/e3c043e1c5.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css">
+		
+		<!-- JQUERY -->
+		<script src="https://code.jquery.com/jquery-3.6.0.js"integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="crossorigin="anonymous"></script>
+
+		<!-- FAVICON -->
+		<link rel="icon" type="image/x-icon" href="images/favicon.png">
+	</head>
+	<body>
+		<div class="wrapper">
+			<!-- HEADER -->
+			<%- include('components/header') -%>
+
+			<!-- PAGE -->
+			
+			<div class="main-container height-full-header">
+				<div class="container align-center-1">
+					<div class="card medium">
+						<div class="flex column gap-2">
+							<div class="text-bold text-center font-10">Email verification</div>
+							<form class="flex column gap-2" id="email-verification-form" action="/auth/email-verification" method="POST">
+								<div class="flex column gap-1">
+									<span class="text-semibold font-7">Code</span>
+									<input type="number" name="code" class="input-text" placeholder="Code">
+								</div>
+								<button class="btn btn-primary">Submit</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="/js/app.js"></script>
+	</body>
+</html>

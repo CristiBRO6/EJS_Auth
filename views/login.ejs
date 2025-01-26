@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Login</title>
+
+        <!-- STYLE -->
+		<link rel="stylesheet" href="/style/style.css">
+
+		<!-- ICONS -->
+		<script src="https://kit.fontawesome.com/e3c043e1c5.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css">
+		
+		<!-- JQUERY -->
+		<script src="https://code.jquery.com/jquery-3.6.0.js"integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="crossorigin="anonymous"></script>
+
+		<!-- FAVICON -->
+		<link rel="icon" type="image/x-icon" href="images/favicon.png">
+	</head>
+	<body>
+		<div class="wrapper">
+			<!-- HEADER -->
+			<%- include('components/header') -%>
+
+			<!-- PAGE -->
+			
+			<div class="main-container height-full-header">
+				<div class="container align-center-1">
+					<div class="card medium">
+						<div class="flex column gap-2">
+							<div class="text-bold text-center font-10">Login</div>
+							<div class="flex row gap-2 width-full">
+								<a class="width-full" href="/auth/google">
+									<div class="flex align-items-center justify-center width-full text-semibold text-center font-8 bg-gray-100 p-2 b-1 rounded-3 pointer">Autentificate with Google</div>
+								</a>
+								<a class="width-full" href="/auth/facebook">
+									<div class="flex align-items-center justify-center width-full text-semibold text-center font-8 bg-gray-100 p-2 b-1 rounded-3 pointer">Autentificate with Facebook</div>
+								</a>
+							</div>
+							<% if (flashes && flashes.error && flashes.error.length > 0) { %>
+								<span class="text-danger text-semibold font-7"><%= flashes.error %></span>
+							<% } %>							
+							<form class="flex column gap-2" id="login-form" action="/auth/login" method="POST">
+								<div class="flex column gap-1">
+									<span class="text-semibold font-7">Email</span>
+									<input type="text" name="email" class="input-text" placeholder="Email">
+								</div>
+								<div class="flex column gap-1">
+									<span class="text-semibold font-7">Password</span>
+									<input type="password" name="password" class="input-text" placeholder="Password">
+								</div>
+								<button class="btn btn-primary">Login</button>
+							</form>
+							<div class="flex justify-end">
+								<a href="forgot-password" class="link">Forgot password?</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="/js/app.js"></script>
+	</body>
+</html>

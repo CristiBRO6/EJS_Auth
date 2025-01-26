@@ -1,0 +1,101 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Profile</title>
+
+        <!-- STYLE -->
+		<link rel="stylesheet" href="/style/style.css">
+
+		<!-- ICONS -->
+		<script src="https://kit.fontawesome.com/e3c043e1c5.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css">
+		
+		<!-- JQUERY -->
+		<script src="https://code.jquery.com/jquery-3.6.0.js"integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="crossorigin="anonymous"></script>
+
+		<!-- FAVICON -->
+		<link rel="icon" type="image/x-icon" href="images/favicon.png">
+	</head>
+	<body>
+		<div class="wrapper">
+			<!-- HEADER -->
+			<%- include('components/header') %>
+
+			<!-- PAGE -->
+			
+			<div class="main-container">
+				<div class="container flex justify-center">
+					<div class="flex column align-items-center gap-4" style="width: min(400px, 100%);">
+						<span class="font-12 text-bold text-center block">Profile</span>
+						<form class="rounded-full overflow-h" id="change-avatar-form" method="POST" action="auth/change-avatar" enctype="multipart/form-data">
+							<label class="pointer">
+								<% if (user.avatar != 0) { %>
+									<% if (user.avatar.startsWith('http') || user.avatar.startsWith('https')) { %>
+										<img src="<%= user.avatar %>" alt="User Avatar" style="width: 100px; height: 100px;">
+									<% } else { %>
+										<img src="/uploads/<%= user.avatar %>" alt="User Avatar" style="width: 100px; height: 100px;">
+									<% } %>
+								<% } else { %>
+									<div class="bg-gray-200 p-2 b-1">
+										<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+											<path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+										</svg>
+									</div>
+								<% } %>
+								<input class="hidden" type="file" name="avatar" accept="image/png, image/gif, image/jpeg, image/jpg">
+							</label>
+						</form>
+						<form class="flex column gap-2 width-full" id="update-profile-form" action="auth/update-profile" method="POST">
+							<div class="flex column gap-1">
+								<span class="text-semibold font-7">Name</span>
+								<input type="text" class="input-text" name="name" value="<%= user.name %>" placeholder="Name">
+							</div>
+							<button class="btn btn-primary width-full">Update</button>
+						</form>
+						<span class="text-bold font-10">Change Password</span>
+						<form class="flex column gap-2 width-full" id="change-password-form" action="auth/change-password" method="POST">
+							<div class="flex column gap-1">
+								<span class="text-semibold font-7">Current password</span>
+								<input type="password" class="input-text" name="current_password" placeholder="Current password">
+							</div>
+							<div class="flex column gap-1">
+								<span class="text-semibold font-7">New password</span>
+								<input type="password" class="input-text" name="new_password" placeholder="New password">
+							</div>
+							<div class="flex column gap-1">
+								<span class="text-semibold font-7">Confirm new password</span>
+								<input type="password" class="input-text" name="confirm_new_password" placeholder="Confirm new password">
+							</div>
+							<button class="btn btn-primary width-full">Update</button>
+						</form>
+						<span class="text-bold font-10">Account links</span>
+						<div class="flex column gap-2 width-full">
+							<% if (linkedAccounts.google) { %>
+								<div class="flex justify-center width-full text-semibold font-8 bg-gray-100 p-2 b-1 rounded-3 disabled">
+									Linked with Google
+								</div>
+							<% } else { %>
+								<a href="/auth/google?link=true">
+									<div class="flex justify-center width-full text-semibold font-8 bg-gray-100 p-2 b-1 rounded-3 pointer">Link with Google</div>
+								</a>
+							<% } %>
+
+							<% if (linkedAccounts.facebook) { %>
+								<div class="flex justify-center width-full text-semibold font-8 bg-gray-100 p-2 b-1 rounded-3 disabled">
+									Linked with Facebook
+								</div>
+							<% } else { %>
+								<a href="/auth/facebook?link=true">
+									<div class="flex justify-center width-full text-semibold font-8 bg-gray-100 p-2 b-1 rounded-3 pointer">Link with Facebook</div>
+								</a>
+							<% } %>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<script src="/js/app.js"></script>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+<div class="header">
+    <div class="container">
+        <div class="flex align-items-center justify-between gap-2">
+            <a href="/" class="font-10 text-bold text-white pointer">Auth</a>
+            <div class="header-items flex align-items-center gap-2">
+                <% if (user) { %>
+                    <span class="font-7 text-semibold text-gray-300"><%= user.name %></span>
+                    <a href="/" class="header-item">Home</a>
+                    <% if (user.role >= rolesList.ADMIN) { %>
+                        <a href="admin" class="header-item">Dashboard</a>
+                    <% } %>
+                    <a href="profile" class="header-item">Profile</a>
+                    <a href="auth/logout" class="btn btn-danger">Logout</a>
+                <% } else { %>
+                    <a href="/" class="header-item">Home</a>
+                    <a href="login" class="header-item">Login</a>
+                    <a href="register" class="header-item">Register</a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
